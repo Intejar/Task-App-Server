@@ -25,10 +25,10 @@ async function run() {
         app.get('/task', async (req, res) => {
             let query = {}
             if(req.query.email){
-                query = {email: req.query.email, status:'incomplete'}
+                query = {email: req.query.email}
             }
-            // const filter = {status:'incomplete'}
-            const data = await taskCollection.find(query).toArray();
+            const filter = {status:'incomplete'}
+            const data = await taskCollection.find(query,filter).toArray();
             console.log(data)
             res.send(data)
         })
@@ -88,10 +88,10 @@ async function run() {
         app.get('/completedTask', async (req, res) => {
             let query = {}
             if(req.query.email){
-                query = {email: req.query.email, status:'completed'}
+                query = {email: req.query.email}
             }
-            // const filter = {status:'incomplete'}
-            const data = await taskCollection.find(query).toArray();
+            const filter = {status:'completed'}
+            const data = await taskCollection.find(query, filter).toArray();
             console.log(data)
             res.send(data)
         })
